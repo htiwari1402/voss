@@ -7,14 +7,23 @@ public class UserEntity {
     public String designation;
     public String reportingManager;
     
-    public UserEntity(String userName, String name, String designation,
+/*    public UserEntity(String userName, String name, String designation,
 			String reportingManager) {
-		super();
+		this.userName = userName;
+		this.name = name;
+		this.designation = designation;
+		this.reportingManager = reportingManager;
+	}*/
+    public UserEntity( String designation,String name,
+			String reportingManager,String userName) {
 		this.userName = userName;
 		this.name = name;
 		this.designation = designation;
 		this.reportingManager = reportingManager;
 	}
+    public UserEntity()
+    { 	 
+    }
 	public String getUserName() {
 		return userName;
 	}
