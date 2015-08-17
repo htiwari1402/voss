@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html class="ViHtml" xmlns:ng="http://angularjs.org" id="ng-app" ng-app="voss" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User Registration</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="app/libs/voss-thirdparty.min.js"></script>
+<script src="/app/libs/jquery.js"></script>
+<script src="/app/libs/jquery-ui.js"></script>
+<script src="/app/js/app.js"></script>
+<script src="/app/js/controller.js"></script>
+<link rel="stylesheet" href="/app/css/styles.css">
+<link rel="stylesheet" href="/app/libs/jquery-ui.css">
+</head>
+<body>
+<div ng-controller="UserRegController">
+<input type="text" ng-model="userName" class="bigInput">
+<input type="text" ng-model="name" class="bigInput">
+<input type="text" ng-model="designation" class="bigInput">
+<input type="text" ng-model="reportingManager" class="bigInput">
+<input type="button" ng-click="addUsers();">
+</div>
+</body>
+</html>
