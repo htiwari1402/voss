@@ -12,12 +12,29 @@
 <link rel="stylesheet" href="/app/libs/jquery-ui.css">
 </head>
 <body>
-<div ng-controller="UserRegController">
-<input type="text" ng-model="userName" class="bigInput">
-<input type="text" ng-model="name" class="bigInput">
-<input type="text" ng-model="designation" class="bigInput">
-<input type="text" ng-model="reportingManager" class="bigInput">
-<input type="button" ng-click="addUsers();">
+<div ng-controller="UserRegController" align="center">
+<table class="leftBar">
+<tr>
+<td>User Name</td>
+<td><input type="text" ng-model="userName" class="bigInput"></td>
+</tr>
+<tr>
+<td>Name</td>
+<td><input type="text" ng-model="name" class="bigInput"></td>
+</tr>
+</table>
+<table class="rightBar">
+<tr>
+<td>Designation</td>
+<td><input type="text" ng-model="designation" class="bigInput"></td>
+</tr>
+<tr>
+<td>Reporting Manager</td>
+<td><input type="text" ng-model="reportingManager" class="bigInput"></td>
+</tr>
+</table>
+<br>
+<input type="button" ng-click="addUsers();" value="Create User" style="clear:both;margin-top:10%;" class="bigButton">
 </div>
 </body>
 </html>

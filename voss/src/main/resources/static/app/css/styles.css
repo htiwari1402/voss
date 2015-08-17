@@ -1,63 +1,43 @@
-#timelineBar {
-	position: fixed;
-	bottom: 2%;
-	left: 10%;
-	height: 4%;
-	background-color: #ffffff;
-	opacity: 0.6;
-	width: 80%;
-	border: 1px solid #ffffff;
-	border-radius: 5px;
-	padding: 5px;
-	cursor: pointer;
+.bigInput
+{
+	font-size:23px;
+	font-family:"helvetica";
+	border: 1px solid #9d9d9d;
+	background-color:#f8f8f8;
+	height:40px;
+	width:300px;
+	padding-left:6px;
 }
-
-.forward {
-	position: fixed;
-	bottom: 2%;
-	right: 5%;
-	height: 50px;
-	width: 50px;
+.leftBar
+{
+	display:inline-block;
+	float:left;
+	margin-top:2%;
+	margin-left:10%;
 }
-
-.backward {
-	position: fixed;
-	bottom: 2%;
-	left: 5%;
-	height: 50px;
-	width: 50px;
+.rightBar
+{
+	display:inline-block;
+	float:right;
+	margin-top:2%;
+	margin-right:10%;
 }
-
-.timelineSegment {
-	display: inline-block;
-	font-size: 12px;
+.leftBar tr td
+{
+	font-size:23px;
+	font-family:"helvetica";
+}
+.rightBar tr td
+{
+	font-size:23px;
+	font-family:"helvetica";
+}
+.bigButton
+{
+	height:70px;
+	width:300px;
+	background-color:#00d27f;
+	font-size:23px;
 	color: #ffffff;
-	background-color: #000000;
-	color: #ffffff;
-	padding: 5px;
-	font-weight: bold;
-	border-radius: 3px;
-	opacity: 0.9;
-}
-
-.timelineSegment:hover {
-	display: inline-block;
-	font-size: 12px;
-	color: #ffffff;
-	background-color: #ffffff;
-	color: #000000;
-	padding: 5px;
-	font-weight: bold;
-	border-radius: 3px;
-	opacity: 0.9;
-}
-
-#main {
-	height: 500px;
-	width: 80%;
-	background-color: #ffffff;
-	margin-top: 2%;
-	opacity: 0.8;
-	border-radius: 10px;
-	padding: 15px;
+	border:1px solid #00d27f;
 }
