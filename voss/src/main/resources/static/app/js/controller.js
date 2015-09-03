@@ -38,4 +38,15 @@ app.controller('UserRegController', ['$scope', '$route', '$routeParams','$http',
        }
 }   
 ]);
+app.controller('MasterController', ['$scope', '$route', '$routeParams','$http','$location','$rootScope', 
+                                  function($scope, $route, $routeParams,$http,$location,$rootScope) 
+{
+       
+       init($scope, $route, $routeParams,$http,$rootScope);
+       function init($scope, $route, $routeParams,$http,$rootScope) 
+       {
+       
+       }
+}
+]);
 

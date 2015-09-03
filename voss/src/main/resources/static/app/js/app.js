@@ -3,7 +3,7 @@ var app = angular.module('voss', ['ui.bootstrap', 'dialogs.main','pascalprecht.t
 app.config(['$routeProvider', function($routeProvider) {
 	  $routeProvider.when('/welcome', {
 	    controller : 'PageController',
-	    templateUrl : './app/partials/sf.html'
+	    templateUrl : './app/partials/productMaster.html'
 	  })
 	  .otherwise({
 	    redirectTo : '/'
