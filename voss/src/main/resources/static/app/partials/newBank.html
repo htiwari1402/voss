@@ -1,0 +1,181 @@
+<section class="content" ng-controller="BankMasterController">
+          <div class="row">
+          
+          <form class="form-horizontal" action="" >
+                 
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+             <div class="row p10">
+                
+              <div class="box-body">                  
+               
+                 <div class="form-group">
+                   <div class="col-md-4"> <label>Country :</label> </div>
+                   
+                    <div class="col-md-8"> 
+                    <div class="input-group">  
+                    <select class="form-control select2  pull-left" tabindex="-1" aria-hidden="true" ng-model="country">
+                      <option value="--Select--">--Select--</option>
+		              <option value="55">India</option>
+		              <option value="79">Uk</option>
+		              <option value="02">Japan</option>
+		            </select>
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                  
+                 
+                  <div class="form-group">
+                   <div class="col-md-4"> <label>Name : <span>*</span></label> </div>
+                   
+                    <div class="col-md-8"> 
+                    <div class="input-group">  
+                    <input class="form-control" placeholder="Enter Your Name" type="text" ng-model="name">
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                 <div class="form-group">
+                    <div class="col-md-4">
+                    <label>Description : <span>*</span></label>
+                    
+                    </div>
+                   
+                     <div class="col-md-8">  
+                    <div class="input-group">  
+                    <textarea ng-model="desc" class="form-control" rows="3" placeholder="Enter Description..."></textarea>
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                 
+                 <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Address : <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                    <textarea ng-model="address" class="form-control" rows="3" placeholder="Enter Your Address..."></textarea>
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                  
+                 <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Account No. <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                      <input ng-model="accNo" class="form-control" placeholder="Enter Your Account No." type="text">
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                 <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Swift : <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                      <input  ng-model="swift" class="form-control" placeholder="Enter " type="text">
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+               </div>
+         
+              </div>
+             </div>
+             
+             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="row p10">
+                 <div class="box-body">
+                                   
+                  <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Contact No. : <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                      <input ng-model="contactNo" class="form-control" placeholder="Enter Your Contact No. " type="text">
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                
+                 <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Email Id: <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                      <input ng-model="emailID" class="form-control" placeholder="Enter Your Email Id " type="text">
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                 
+                 <div class="form-group">
+                 
+                  <div class="col-md-4">
+                    <label>Status :</label>
+                    </div>
+                  
+                   <div class="col-md-8">   
+                    <div class="input-group">  
+                    <select ng-model="status" class="form-control select2  pull-left" tabindex="-1" aria-hidden="true">
+                      <option selected="selected">Enable</option>
+                      
+                    </select>
+                  </div>
+                 </div> 
+                  
+                 </div><!-- /.form-group -->
+                 
+                <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Details : <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                    <textarea ng-model="details" class="form-control" rows="3" placeholder="Enter Your Details..."></textarea>
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                 <div class="form-group">
+                 
+                   <div class="col-lg-7 col-md-6 col-sm-1 col-xs-2">
+                   
+                   </div>
+                   
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+                   <button ng-click="addBank();" class="btn btn-md btn-primary"><i class="fa fa-floppy-o"></i>
+ Save</button>
+                   </div>
+                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+                   <button ng-click="" class="btn btn-md btn-primary"><i class="fa fa-power-off fs0"></i> Quit</button>
+                   </div>
+                 </div>
+                 
+               </div>
+              </div>
+             </div>   
+             
+              
+          </form> 
+          
+          </div>   
+       
+       
+        </section>
