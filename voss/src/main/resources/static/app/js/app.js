@@ -1,11 +1,16 @@
 var app = angular.module('voss', ['ui.bootstrap', 'dialogs.main','pascalprecht.translate','dialogs.default-translations','ngRoute', 'uiSlider','ngSanitize','xeditable','ng.shims.placeholder','angularSpinner']);
 
 app.config(['$routeProvider', function($routeProvider) {
-	  $routeProvider.when('/welcome', {
+	  $routeProvider
+	  .when('/bankMaster', {
 	    controller : 'PageController',
-	    templateUrl : './app/partials/productMaster.html'
+	    templateUrl : './app/partials/bankMaster.html'
+	  })
+	  .when('/newBank', {
+	    controller : 'PageController',
+	    templateUrl : './app/partials/newBank.html'
 	  })
 	  .otherwise({
-	    redirectTo : '/'
-	  });
+        redirectTo: '/'
+      });
 	}]);
