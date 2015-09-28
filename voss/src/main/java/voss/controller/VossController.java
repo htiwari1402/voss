@@ -6,6 +6,9 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +21,9 @@ import voss.dao.DAO;
 import voss.domain.ProductMaster;
 import voss.domain.UserEntity;
 import voss.entity.BankMasterEntity;
+import voss.entity.BusinessUnitEntity;
 import voss.repository.BankMasterRepository;
+import voss.repository.BusinessUnitRepository;
 
 
 @Controller
@@ -59,21 +64,63 @@ public class VossController {
 		DAO dao = new DAO();
 		return dao.getProducts();
     }
-    @RequestMapping("/getBankMaster")
+    @SuppressWarnings("unchecked")
+	@RequestMapping("/getBankMaster")
     @ResponseBody
-    public List<BankMasterEntity> getBankMaster()
+    public List<BankMasterEntity> getBankMaster(
+    		@RequestParam(value="page", defaultValue="1") int page,
+    		@RequestParam(value="size", defaultValue="10") int size
+    		)
     {
-    	List<BankMasterEntity> bm = new ArrayList<BankMasterEntity>();
     	BankMasterRepository bmr = appContext.getBean(BankMasterRepository.class);
-    	bm = bmr.findAll();
+    	PageRequest request = new PageRequest(page-1, size);
+    	Page<BankMasterEntity> bm  =  bmr.findAll(request);
+    	return bm.getContent();
+    }
+    @RequestMapping("/getBankMasterSize")
+    @ResponseBody
+    public int getBankMasterSize()
+    {
+    	BankMasterRepository bmr = appContext.getBean(BankMasterRepository.class);
+    	int i  =  (int) bmr.count();
+    	return i;
+    }
+    @RequestMapping("/getBankByID")
+    @ResponseBody
+    public BankMasterEntity getBankByID(@RequestParam(value="bankID", defaultValue="1") int  bankID)
+    {
+        BankMasterEntity bm = new BankMasterEntity();
+    	BankMasterRepository bmr = appContext.getBean(BankMasterRepository.class);
+    	bm = bmr.findByBankID(bankID);
     	return bm;
     }
     @RequestMapping("/addBank")
     @ResponseBody
     public BankMasterEntity addBank(@RequestBody BankMasterEntity bankMaster)
     {
-    	//BankMasterRepository bmr = appContext.getBean(BankMasterRepository.class);
-    	//bmr.save(bankMaster);
+    	DAO dao = new DAO();
+    	dao.insertNewBank(bankMaster);
     	return bankMaster;
+    }
+    @RequestMapping("/editBank")
+    @ResponseBody
+    public BankMasterEntity editBank(@RequestBody BankMasterEntity bankMaster)
+    {
+    	DAO dao = new DAO();
+    	dao.editBank(bankMaster);
+    	return bankMaster;
+    }
+    @SuppressWarnings("unchecked")
+	@RequestMapping("/getBusinessUnit")
+    @ResponseBody
+    public List<BusinessUnitEntity> getBusinessUnitMaster(
+    		@RequestParam(value="page", defaultValue="1") int page,
+    		@RequestParam(value="size", defaultValue="10") int size
+    		)
+    {
+    	BusinessUnitRepository bmr = appContext.getBean(BusinessUnitRepository.class);
+    	PageRequest request = new PageRequest(page-1, size);
+    	Page<BusinessUnitEntity> bm  =  bmr.findAll(request);
+    	return bm.getContent();
     }
 }

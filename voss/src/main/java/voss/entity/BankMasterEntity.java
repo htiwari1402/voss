@@ -18,12 +18,9 @@ public class BankMasterEntity {
 
 	@Id
 	@Basic(optional = false)
-	@GeneratedValue(strategy=GenerationType.IDENTITY, generator="IdOrGenerated")
-	@GenericGenerator(name="IdOrGenerated",
-	                  strategy="....UseIdOrGenerate"
-	)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "pk_bankID", nullable = false)
-  public int pk_bankID;
+  public int bankID;
 
   @Column(name = "country")
   public String country;
@@ -56,11 +53,11 @@ public class BankMasterEntity {
   public String details;
 
 public int getPk_bankID() {
-	return pk_bankID;
+	return bankID;
 }
 
 public void setPk_bankID(int pk_bankID) {
-	this.pk_bankID = pk_bankID;
+	this.bankID = pk_bankID;
 }
 
 public String getCountry() {

@@ -10,6 +10,14 @@ app.config(['$routeProvider', function($routeProvider) {
 	    controller : 'PageController',
 	    templateUrl : './app/partials/newBank.html'
 	  })
+	  .when('/editBank', {
+	    controller : 'PageController',
+	    templateUrl : './app/partials/editBank.html'
+	  })
+	  .when('/businessUnit', {
+	    controller : 'PageController',
+	    templateUrl : './app/partials/business-unit.html'
+	  })
 	  .otherwise({
         redirectTo: '/'
       });

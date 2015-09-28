@@ -1,0 +1,25 @@
+{
+	"name": "voss",
+	"description": "VOSS",
+	"repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/npm/npm.git"
+  },
+   "license": "UNLICENSED",
+   "README":"Voss",
+	"dependencies": 
+	{
+    "grunt": "latest",
+    "grunt-cli": "latest",
+		"grunt-contrib-uglify": "latest",
+		"grunt-contrib-jshint": "latest",
+		"grunt-contrib-csslint": "latest",
+		"grunt-contrib-concat": "latest",
+		"grunt-contrib-htmlmin": "latest",
+		"grunt-contrib-copy": "latest",
+		"grunt-bower-install-simple": "latest",
+		"grunt-protractor-runner": "latest",
+		"grunt-bg-shell": "latest",
+		"grunt-wait": "latest"
+	}
+}

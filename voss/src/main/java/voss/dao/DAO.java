@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.RowMapper;
 
 import voss.domain.ProductMaster;
 import voss.domain.UserEntity;
+import voss.entity.BankMasterEntity;
+import voss.entity.BusinessUnitEntity;
 
 public class DAO {
 	
@@ -46,5 +48,34 @@ public class DAO {
 					}
 			
 				});
+	}
+	@SuppressWarnings("unchecked")
+	public void insertNewBank(BankMasterEntity bme) throws org.springframework.jdbc.BadSqlGrammarException
+	{
+		String SQL= "insert into bankmaster (`country`, `name`, `desc`, `address`, `accNo`, `swift`, `contactNo`, `emailID`, `status`, `details`)  values(?,?,?,?,?,?,?,?,?,?)";
+		
+		this.jt.update(SQL, new Object[]{bme.getCountry(),bme.getName(),bme.getDesc(),bme.getAddress(),bme.getAccNo(),bme.getSwift()
+				,bme.getContactNo(),bme.getEmailID(),bme.getStatus(),bme.getDetails()});
+		
+		
+	}
+	@SuppressWarnings("unchecked")
+	public void editBank(BankMasterEntity bme) throws org.springframework.jdbc.BadSqlGrammarException
+	{
+		String SQL= "update bankmaster set `country` = ?, `name` = ?, `desc` = ?, `address` = ?, `accNo` = ?, `swift` = ?,`contactNo` = ?, `emailID` = ?, `status`=?, `details`= ? where `pk_bankID` = ?";
+		
+		this.jt.update(SQL, new Object[]{bme.getCountry(),bme.getName(),bme.getDesc(),bme.getAddress(),bme.getAccNo(),bme.getSwift()
+				,bme.getContactNo(),bme.getEmailID(),bme.getStatus(),bme.getDetails(),bme.getPk_bankID()});
+		
+		
+	}
+	@SuppressWarnings("unchecked")
+	public void insertNewBU(BusinessUnitEntity bme) throws org.springframework.jdbc.BadSqlGrammarException
+	{
+		String SQL= "insert into businessunitmaster (`code`,`name`,`status`)  values(?,?,?)";
+		
+		this.jt.update(SQL, new Object[]{bme.getCode(),bme.getName(),bme.getStatus()});
+		
+		
 	}
 }

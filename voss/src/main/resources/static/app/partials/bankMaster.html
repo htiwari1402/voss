@@ -19,14 +19,14 @@
 					</thead>
 					<tbody>
 						 <tr role="row" class="odd" ng-repeat="each in bankData">
-                           <td class="sorting_1" > <a href="#"> <i class="fa fa-caret-right color-db fs2"></i> </a> </i>
+                           <td class="sorting_1 select{{ each.bankID }}"  ng-click="selectBank(each.bankID);"> <a> <i class="fa fa-caret-right color-db fs2"></i> </a> </i>
 </td>
-                           <td class="sorting_1" >{{ each.pk_bankID }}</td>
-                           <td class="sorting_1" >{{ each.country }}</td>
-                           <td class="sorting_1" >{{ each.name }} </td>
-                           <td class="sorting_1" >{{ each.swift }}</td>
-                           <td class="sorting_1" >{{ each.address }} </td>
-                           <td class="sorting_1" >{{ each.status }}</td>
+                           <td class="sorting_1 select{{ each.bankID }}"  ng-style="selectedRow">{{ each.bankID }}</td>
+                           <td class="sorting_1 select{{ each.bankID }}" ng-style="selectedRow">{{ each.country }}</td>
+                           <td class="sorting_1 select{{ each.bankID }}" ng-style="selectedRow">{{ each.name }} </td>
+                           <td class="sorting_1 select{{ each.bankID }}" ng-style="selectedRow">{{ each.swift }}</td>
+                           <td class="sorting_1 select{{ each.bankID }}" ng-style="selectedRow">{{ each.address }} </td>
+                           <td class="sorting_1 select{{ each.bankID }}" ng-style="selectedRow">{{ each.status }}</td>
                         </tr>
 					             </tbody>
 				               </table>
@@ -34,12 +34,25 @@
                   
                   <div class="container">
                     <div class="row text-center mB20">
-                  <div id="example2_paginate" class="dataTables_paginate paging_simple_numbers"><ul class="pagination"><li id="example2_previous" class="paginate_button previous disabled"><a tabindex="0" data-dt-idx="0" aria-controls="example2" href="#">Previous</a></li><li class="paginate_button active"><a tabindex="0" data-dt-idx="1" aria-controls="example2" href="#">1</a></li><li class="paginate_button "><a tabindex="0" data-dt-idx="2" aria-controls="example2" href="#">2</a></li><li class="paginate_button "><a tabindex="0" data-dt-idx="3" aria-controls="example2" href="#">3</a></li><li class="paginate_button "><a tabindex="0" data-dt-idx="4" aria-controls="example2" href="#">4</a></li><li class="paginate_button "><a tabindex="0" data-dt-idx="5" aria-controls="example2" href="#">5</a></li><li class="paginate_button "><a tabindex="0" data-dt-idx="6" aria-controls="example2" href="#">6</a></li><li id="example2_next" class="paginate_button next"><a tabindex="0" data-dt-idx="7" aria-controls="example2" href="#">Next</a></li></ul></div>
+                  <div id="example2_paginate" class="dataTables_paginate paging_simple_numbers">
+                  <ul class="pagination">
+                  <li id="example2_previous" class="paginate_button previous disabled">
+                  <a ng-click="last();" tabindex="0" data-dt-idx="0" aria-controls="example2" >Previous</a>
+                  </li>
+                  <li class="paginate_button" ng-repeat="n in getNumber(2)  track by $index">
+                  <a tabindex="0" data-dt-idx="{{$index+1}}" aria-controls="example2"  ng-click="reload($index+1);">{{$index+1}}</a>
+                  </li>
+                  <li id="example2_next" class="paginate_button next">
+                  <a ng-click="next();" tabindex="0" data-dt-idx="7" aria-controls="example2" >Next</a>
+                  </li>
+                  </ul>
+                  </div>
                   </div>
                 </div>
                 
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">  
 			<a ng-click="fetchNewBank();"  class="btn btn-md btn-primary" > <i class="fa fa-plus"></i> </a> <span class="mL10  color-db"> Add </span> </div>
+			<a ng-click="editBank();"  class="btn btn-md btn-primary" > <i class="fa fa-plus"></i> </a> <span class="mL10  color-db"> Edit </span> 	  
 				  </div> 
            
           
