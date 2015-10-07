@@ -45,18 +45,6 @@ public class VossController {
     public  String home() {
         return "index";
     }
-    @RequestMapping("/UserRegistration")
-    public  String userRegistration() {
-        return "regist";
-    }
-    @RequestMapping("/addUsers")
-    @ResponseBody
-    public String addUsers(@RequestBody UserEntity user)
-    {
-		DAO dao = new DAO();
-		dao.addUsers(user);
-		return null;
-    }
     @RequestMapping("/getProducts")
     @ResponseBody
     public List<ProductMaster> getProducts()

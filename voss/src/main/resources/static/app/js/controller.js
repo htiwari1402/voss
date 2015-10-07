@@ -5,7 +5,7 @@ app.controller('PageController', ['$scope', '$route', '$routeParams','$http','$l
        init($scope, $route, $routeParams,$http,$rootScope);
        function init($scope, $route, $routeParams,$http,$rootScope) 
        {
-       
+    	   $rootScope.pendingStatus = 'Disable';
        }
        $scope.fetchBankMaster = function()
        {
@@ -15,6 +15,7 @@ app.controller('PageController', ['$scope', '$route', '$routeParams','$http','$l
        {
     	   $location.url("businessUnit");
        }
+       
 }
 ]);
 app.controller('UserRegController', ['$scope', '$route', '$routeParams','$http','$location','$rootScope', 
@@ -24,7 +25,17 @@ app.controller('UserRegController', ['$scope', '$route', '$routeParams','$http',
        init($scope, $route, $routeParams,$http,$rootScope);
        function init($scope, $route, $routeParams,$http,$rootScope) 
        {
-       
+    	   $http.post("/getDesign").
+    	   then(function(data)
+    			   {
+    		            $scope.des = data.data;
+    			   });
+    	   $http.post("/getUser").
+    	   then(function(data)
+    			   {
+    		            $scope.userData = data.data;
+    			   });
+    	   
        }
        $scope.addUsers = function()
        {
@@ -32,7 +43,8 @@ app.controller('UserRegController', ['$scope', '$route', '$routeParams','$http',
     		                			"userName": $scope.userName,
     		                			"name": $scope.name,
     		                			"designation": $scope.designation,
-    		                			"reportingManager": $scope.reportingManager
+    		                			"reportingManager": $scope.reportingManager,
+    		                			"password" :  $scope.password
        								} ;
        $http.post("/addUsers", userInfo).
        then(function(data)
@@ -145,6 +157,7 @@ app.controller('BankMasterController', ['$scope', '$route', '$routeParams','$htt
        }
        $scope.addBank = function()
        {
+    	   
        var bankDetail = {
    			"country": $scope.country,
    			"name": $scope.name,

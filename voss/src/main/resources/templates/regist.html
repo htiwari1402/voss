@@ -19,6 +19,10 @@
 <td><input type="text" ng-model="userName" class="bigInput"></td>
 </tr>
 <tr>
+<td>Password</td>
+<td><input type="password" ng-model="password" class="bigInput"></td>
+</tr>
+<tr>
 <td>Name</td>
 <td><input type="text" ng-model="name" class="bigInput"></td>
 </tr>
@@ -26,11 +30,19 @@
 <table class="rightBar">
 <tr>
 <td>Designation</td>
-<td><input type="text" ng-model="designation" class="bigInput"></td>
+<td><!-- <input type="text" ng-model="designation" class="bigInput"> -->
+<select ng-model="designation"  class="bigInput">
+<option ng-repeat="data in des" value="{{ data.designation }}">{{ data.designation }}</option>
+</select>
+</td>
 </tr>
 <tr>
 <td>Reporting Manager</td>
-<td><input type="text" ng-model="reportingManager" class="bigInput"></td>
+<td><!-- <input type="text" ng-model="reportingManager" class="bigInput"> -->
+<select ng-model="reportingManager"  class="bigInput">
+<option ng-repeat="data in userData" value="{{ data.userName }}">{{ data.name }}</option>
+</select>
+</td>
 </tr>
 </table>
 <br>
