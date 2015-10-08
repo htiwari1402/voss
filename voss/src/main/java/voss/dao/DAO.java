@@ -9,7 +9,11 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;  
+
+
+
 
 
 
@@ -22,16 +26,20 @@ public class DAO {
 	
 	public DriverManagerDataSource ds= null;
 	public JdbcTemplate jt = null;
+	public int countOfResults = 0;
 
 	public DAO()
 	{
 		this.ds = new DriverManagerDataSource();
 		this.ds.setDriverClassName("com.mysql.jdbc.Driver");
 		this.ds.setUrl("jdbc:mysql://localhost:3306/voss");
-		this.ds.setUsername("vossDB");
-		this.ds.setPassword("pass");
-		
+		this.ds.setUsername("root");
+		this.ds.setPassword("");
 		this.jt = new JdbcTemplate(this.ds);
+	}
+	public void setCountOfResults(int num)
+	{
+	    this.countOfResults = num;
 	}
 	public void addUsers(UserEntity user)
 	{
@@ -97,4 +105,31 @@ public class DAO {
 	}
 		return genId;
 }
+	@SuppressWarnings("unchecked")
+    public List<UserEntity> getAuthenticatedUser(String username, String password)
+	{
+	    //int countOfResults = 0;
+	    String SQLInit = "select count(*) from userregistration where userName = ? and password = ?";
+	    //ResultSet rs;
+	    this.jt.query(SQLInit,new Object[]{username,password},(rs,num)->(this.countOfResults = rs.getInt(1)));
+	    System.out.println(this.countOfResults);
+	    if(this.countOfResults > 0)	
+	    {
+	    String SQL = "select * from userregistration where userName = ? and password = ?";
+	    return this.jt.query(SQL,new Object[]{username,password},new  RowMapper()
+        {
+
+            @Override
+            public UserEntity  mapRow(ResultSet rs, int rn) throws SQLException 
+            {
+                return new UserEntity(rs.getString("designation"),rs.getString("name"),rs.getString("reportingManager"),rs.getString("userName"),
+                        rs.getString("password"));
+            }
+    
+        });
+	    }
+	    else
+	        return null;
+	    
+	}
 }

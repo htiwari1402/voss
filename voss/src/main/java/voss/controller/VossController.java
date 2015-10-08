@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import voss.dao.DAO;
+import voss.domain.LoginCred;
 import voss.domain.ProductMaster;
 import voss.domain.UserEntity;
 import voss.entity.BankMasterEntity;
@@ -39,6 +42,33 @@ public class VossController {
     @ResponseBody
     public  String user(@RequestParam(value="name", defaultValue="World") String name) {
         return "Hello "+name;
+    }
+    @RequestMapping("/")
+    public  String login() {
+        return "login";
+    }
+    
+    @RequestMapping("/authenticate")
+    @ResponseBody
+    public int authenticate(@RequestBody LoginCred lc, HttpSession session)
+    {
+        List<UserEntity> ue = new ArrayList<UserEntity>();
+        DAO dao = new DAO();
+        ue = dao.getAuthenticatedUser(lc.getUsername(), lc.getPassword());
+        //System.out.println(ue.get(0).getName());
+        if(ue == null)
+        {
+            return 0;
+        }
+        else
+        {
+            session.setAttribute("name", ue.get(0).getName());
+            session.setAttribute("designation",ue.get(0).getDesignation());
+            session.setAttribute("reportingManager", ue.get(0).getReportingManager());
+            session.setAttribute("username", ue.get(0).getUserName());
+            return 1;
+        }
+        
     }
     
     @RequestMapping("/home")

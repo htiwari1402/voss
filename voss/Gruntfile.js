@@ -28,25 +28,6 @@ module.exports = function(grunt) {
             uglify: {
               
             },
-            jshint: {
-              
-            },
-            csslint: {
-              options: {
-                csslintrc: '.csslintrc',
-                force: true,
-                formatters: [
-                  {id: 'junit-xml', dest: 'build/reports/csslint/csslint_junit.xml'},
-                  {id: 'text', dest: 'build/reports/csslint/csslint.txt'}
-                ]
-              },
-              strict: {
-                
-              }
-            },
-            htmlmin: {
-              
-            },
             copy: {
               main: {
                 files: [
@@ -96,10 +77,6 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-bower-install-simple');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-csslint');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-bg-shell');
@@ -108,7 +85,7 @@ module.exports = function(grunt) {
   grunt.option("force", true);
   
   grunt
-          .registerTask('build', ['concat', 'jshint','csslint', 'uglify', 'htmlmin',
+          .registerTask('build', ['concat', 
               'copy']);
   grunt.registerTask('test', ['bgShell:startSelenium', 'wait:test',
       'protractor', 'bgShell:stopSelenium']);

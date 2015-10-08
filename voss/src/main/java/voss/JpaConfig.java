@@ -20,8 +20,8 @@ public class JpaConfig {
              DriverManagerDataSource dataSource = new DriverManagerDataSource();
              dataSource.setDriverClassName("com.mysql.jdbc.Driver");
              dataSource.setUrl("jdbc:mysql://localhost:3306/voss");
-             dataSource.setUsername( "vossDB" );
-             dataSource.setPassword( "pass" );
+             dataSource.setUsername( "root" );
+             dataSource.setPassword( "" );
              return dataSource;
           }
        
