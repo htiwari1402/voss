@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2015 at 06:50 AM
+-- Generation Time: Oct 12, 2015 at 09:21 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -38,25 +38,7 @@ CREATE TABLE IF NOT EXISTS `bankmaster` (
   `emailID` varchar(40) DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
   `details` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
-
---
--- Dumping data for table `bankmaster`
---
-
-INSERT INTO `bankmaster` (`pk_bankID`, `country`, `name`, `desc`, `address`, `accNo`, `swift`, `contactNo`, `emailID`, `status`, `details`) VALUES
-(5, '55', 'ABB', 'ABB', 'Powai, Mumbai,Maharashtra(India)', 'gsdaj213', '23178sajhg8127', '231982139', 'jhsadjhsaj', 'Enable', 'dasgdlglsagdlsgld'),
-(6, '55', 'bhu', 'gfdgfgsf', NULL, NULL, NULL, NULL, NULL, 'Enable', NULL),
-(7, '02', 'jpa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, '79', 'uk1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, '79', 'Swiss Bank', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, '55', 'abbbbb', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(11, '79', 'uk4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, '79', 'uk5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, '79', 'uk6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, '79', 'uk77', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(15, '79', 'uk778', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(16, '79', 'uk7789', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 -- --------------------------------------------------------
 
@@ -114,17 +96,22 @@ INSERT INTO `productmaster` (`name`, `desc`, `status`, `grade`, `specification`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `request`
+-- Table structure for table `requestmaster`
 --
 
-CREATE TABLE IF NOT EXISTS `request` (
-  `userName` varchar(50) NOT NULL,
-  `requestType` varchar(50) NOT NULL,
+CREATE TABLE IF NOT EXISTS `requestmaster` (
+  `userId` int(20) NOT NULL,
+  `requestingUserId` int(20) NOT NULL,
+  `requesttable` varchar(40) NOT NULL,
+  `requestIdName` varchar(40) NOT NULL,
   `activationFlag` int(10) NOT NULL,
+  `requestTableStatusName` varchar(20) NOT NULL,
+  `updatedRequestValue` varchar(20) NOT NULL,
+  `requestMasterName` varchar(40) NOT NULL,
   `date` date NOT NULL,
-  `data` varchar(10000) NOT NULL,
-  `apiCall` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+`requestID` int(40) NOT NULL,
+  `requestIdValue` varchar(40) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -136,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `userregistration` (
   `userName` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `designation` varchar(50) NOT NULL,
-  `reportingManager` varchar(50) NOT NULL,
+  `reportingManager` int(50) NOT NULL,
 `userId` int(30) NOT NULL,
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -146,10 +133,10 @@ CREATE TABLE IF NOT EXISTS `userregistration` (
 --
 
 INSERT INTO `userregistration` (`userName`, `name`, `designation`, `reportingManager`, `userId`, `password`) VALUES
-('amit', 'Amit Singh', 'GM', 'None', 1, 'amit'),
-('htiwari1402', 'Himanshu Tiwari', 'Sales Manager', 'None', 2, 'himanshu'),
-('ter54', 'Terry', 'Salesman', 'None', 3, 'terwer'),
-('yerty', 'yergher', 'Salesman', 'htiwari1402', 4, 'yerty');
+('amit', 'Amit Singh', 'GM', 2, 1, 'amit'),
+('htiwari1402', 'Himanshu Tiwari', 'Sales Manager', 1, 2, 'himanshu'),
+('ter54', 'Terry', 'Salesman', 4, 3, 'terwer'),
+('yerty', 'yergher', 'Salesman', 3, 4, 'yerty');
 
 --
 -- Indexes for dumped tables
@@ -174,6 +161,12 @@ ALTER TABLE `designations`
  ADD PRIMARY KEY (`designationId`);
 
 --
+-- Indexes for table `requestmaster`
+--
+ALTER TABLE `requestmaster`
+ ADD PRIMARY KEY (`requestID`);
+
+--
 -- Indexes for table `userregistration`
 --
 ALTER TABLE `userregistration`
@@ -187,7 +180,7 @@ ALTER TABLE `userregistration`
 -- AUTO_INCREMENT for table `bankmaster`
 --
 ALTER TABLE `bankmaster`
-MODIFY `pk_bankID` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+MODIFY `pk_bankID` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `businessunitmaster`
 --
@@ -198,6 +191,11 @@ MODIFY `buID` int(20) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `designations`
 MODIFY `designationId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `requestmaster`
+--
+ALTER TABLE `requestmaster`
+MODIFY `requestID` int(40) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `userregistration`
 --
