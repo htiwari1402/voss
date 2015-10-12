@@ -41,7 +41,7 @@ public class BankMasterEntity {
   public String swift;
   
   @Column(name = "contactNo")
-  public BigInteger contactNo;
+  public String contactNo;
   
   @Column(name = "emailID")
   public String emailID;
@@ -108,11 +108,11 @@ public void setSwift(String swift) {
 	this.swift = swift;
 }
 
-public BigInteger getContactNo() {
+public String  getContactNo() {
 	return contactNo;
 }
 
-public void setContactNo(BigInteger contactNo) {
+public void setContactNo(String contactNo) {
 	this.contactNo = contactNo;
 }
 
@@ -142,7 +142,7 @@ public void setDetails(String details) {
 
 public BankMasterEntity( String country, String name,
 		String desc, String address, String accNo, String swift,
-		BigInteger contactNo, String emailID, String status, String details) {
+		String contactNo, String emailID, String status, String details) {
 	//super();
 	this.country = country;
 	this.name = name;

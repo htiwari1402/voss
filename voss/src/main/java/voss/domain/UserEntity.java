@@ -5,8 +5,9 @@ public class UserEntity {
     public String  userName;
     public String name;
     public String designation;
-    public String reportingManager;
+    public int reportingManager;
     public String password;
+    public int userId;
     
 /*    public UserEntity(String userName, String name, String designation,
 			String reportingManager) {
@@ -16,12 +17,13 @@ public class UserEntity {
 		this.reportingManager = reportingManager;
 	}*/
     public UserEntity( String designation,String name,
-			String reportingManager,String userName, String password) {
+			int reportingManager,String userName, String password,int userId) {
 		this.userName = userName;
 		this.name = name;
 		this.designation = designation;
 		this.reportingManager = reportingManager;
 		this.password = password;
+		this.userId = userId;
 	}
     public UserEntity()
     { 	 
@@ -44,10 +46,10 @@ public class UserEntity {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-	public String getReportingManager() {
+	public int getReportingManager() {
 		return reportingManager;
 	}
-	public void setReportingManager(String reportingManager) {
+	public void setReportingManager(int reportingManager) {
 		this.reportingManager = reportingManager;
 	}
 	public String getPassword() {
@@ -55,6 +57,12 @@ public class UserEntity {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 }

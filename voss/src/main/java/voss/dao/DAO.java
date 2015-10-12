@@ -17,6 +17,8 @@ import org.springframework.jdbc.core.RowMapper;
 
 
 
+
+import voss.domain.BU;
 import voss.domain.ProductMaster;
 import voss.domain.UserEntity;
 import voss.entity.BankMasterEntity;
@@ -63,13 +65,38 @@ public class DAO {
 				});
 	}
 	@SuppressWarnings("unchecked")
-	public void insertNewBank(BankMasterEntity bme) throws org.springframework.jdbc.BadSqlGrammarException
+	public long insertNewBank(BankMasterEntity bme) throws org.springframework.jdbc.BadSqlGrammarException, SQLException
 	{
 		String SQL= "insert into bankmaster (`country`, `name`, `desc`, `address`, `accNo`, `swift`, `contactNo`, `emailID`, `status`, `details`)  values(?,?,?,?,?,?,?,?,?,?)";
 		
-		this.jt.update(SQL, new Object[]{bme.getCountry(),bme.getName(),bme.getDesc(),bme.getAddress(),bme.getAccNo(),bme.getSwift()
-				,bme.getContactNo(),bme.getEmailID(),bme.getStatus(),bme.getDetails()});
+		/*this.jt.update(SQL, new Object[]{bme.getCountry(),bme.getName(),bme.getDesc(),bme.getAddress(),bme.getAccNo(),bme.getSwift()
+				,bme.getContactNo(),bme.getEmailID(),bme.getStatus(),bme.getDetails()});*/
+		long genId = 0;
+		//this.jt.update(SQL, new Object[]{bme.getCode(),bme.getName(),bme.getStatus()});
+		Connection conn = this.jt.getDataSource().getConnection();
+		PreparedStatement  stmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 		
+		stmt.setString(1, bme.getCountry());
+		stmt.setString(2, bme.getName());
+		stmt.setString(3,bme.getDesc());
+		stmt.setString(4, bme.getAddress());
+		stmt.setString(5, bme.getAccNo());
+		stmt.setString(6,bme.getSwift());
+		stmt.setString(7, bme.getContactNo());
+		stmt.setString(8,bme.getEmailID());
+		stmt.setString(9,bme.getStatus());
+		stmt.setString(10,bme.getDetails());
+		//stmt
+		stmt.executeUpdate();
+		try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                genId = generatedKeys.getLong(1);
+            }
+            else {
+                throw new SQLException("Creating user failed, no ID obtained.");
+            }
+		}
+		return genId;
 		
 	}
 	@SuppressWarnings("unchecked")
@@ -83,7 +110,7 @@ public class DAO {
 		
 	}
 	@SuppressWarnings("unchecked")
-	public long insertNewBU(BusinessUnitEntity bme) throws org.springframework.jdbc.BadSqlGrammarException, SQLException
+	public long insertNewBU(BU bme) throws org.springframework.jdbc.BadSqlGrammarException, SQLException
 	{
 		String SQL= "insert into businessunitmaster (`code`,`name`,`status`)  values(?,?,?)";
 		long genId = 0;
@@ -122,8 +149,8 @@ public class DAO {
             @Override
             public UserEntity  mapRow(ResultSet rs, int rn) throws SQLException 
             {
-                return new UserEntity(rs.getString("designation"),rs.getString("name"),rs.getString("reportingManager"),rs.getString("userName"),
-                        rs.getString("password"));
+                return new UserEntity(rs.getString("designation"),rs.getString("name"),rs.getInt("reportingManager"),rs.getString("userName"),
+                        rs.getString("password"),rs.getInt("userId"));
             }
     
         });

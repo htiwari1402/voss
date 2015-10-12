@@ -1,5 +1,6 @@
 package voss.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -11,13 +12,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import voss.dao.DAO;
 import voss.domain.LoginCred;
@@ -66,13 +70,17 @@ public class VossController {
             session.setAttribute("designation",ue.get(0).getDesignation());
             session.setAttribute("reportingManager", ue.get(0).getReportingManager());
             session.setAttribute("username", ue.get(0).getUserName());
+            session.setAttribute("userId",ue.get(0).getUserId());
             return 1;
         }
         
     }
     
     @RequestMapping("/home")
-    public  String home() {
+    public  String home(Model mod, HttpSession ses) {
+    	String name = (String)ses.getAttribute("name");
+    	mod.addAttribute("name", name);
+    	System.out.println(name);
         return "index";
     }
     @RequestMapping("/getProducts")
@@ -114,11 +122,11 @@ public class VossController {
     }
     @RequestMapping("/addBank")
     @ResponseBody
-    public BankMasterEntity addBank(@RequestBody BankMasterEntity bankMaster)
+    public long addBank(@RequestBody BankMasterEntity bankMaster) throws BadSqlGrammarException, SQLException
     {
     	DAO dao = new DAO();
-    	dao.insertNewBank(bankMaster);
-    	return bankMaster;
+    	long lng  = dao.insertNewBank(bankMaster);
+    	return lng;
     }
     @RequestMapping("/editBank")
     @ResponseBody
@@ -140,5 +148,18 @@ public class VossController {
     	PageRequest request = new PageRequest(page-1, size);
     	Page<BusinessUnitEntity> bm  =  bmr.findAll(request);
     	return bm.getContent();
+    }
+    
+    @RequestMapping("/getUserDetail")
+    @ResponseBody
+    public UserEntity getUserDetails(HttpSession session)
+    {
+    	UserEntity ue = new UserEntity();
+    	ue.setDesignation((String) session.getAttribute("designation"));
+    	ue.setName((String)session.getAttribute("name"));
+    	ue.setReportingManager((int)session.getAttribute("reportingManager"));
+    	ue.setUserId((int)session.getAttribute("userId"));
+    	ue.setUserName((String)session.getAttribute("username"));
+    	return ue;
     }
 }

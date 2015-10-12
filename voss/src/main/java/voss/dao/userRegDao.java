@@ -37,8 +37,8 @@ public class userRegDao extends DAO {
 					@Override
 					public UserEntity  mapRow(ResultSet rs, int rn) throws SQLException 
 					{
-					    return new UserEntity(rs.getString("designation"),rs.getString("name"),rs.getString("reportingManager"),rs.getString("userName"),
-					    		rs.getString("password"));
+					    return new UserEntity(rs.getString("designation"),rs.getString("name"),rs.getInt("reportingManager"),rs.getString("userName"),
+					    		rs.getString("password"),rs.getInt("userId"));
 					}
 			
 				});
