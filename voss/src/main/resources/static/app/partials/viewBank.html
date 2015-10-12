@@ -1,0 +1,185 @@
+<section class="content" ng-controller="PageController">
+          <div class="row">
+          
+          <form class="form-horizontal" action="" >
+                 
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+             <div class="row p10">
+                
+              <div class="box-body">                  
+               
+                 <div class="form-group">
+                   <div class="col-md-4"> <label>Country :</label> </div>
+                   
+                    <div class="col-md-8"> 
+                    <div class="input-group">  
+                    <select class="form-control select2  pull-left" tabindex="-1" aria-hidden="true" ng-model="country">
+                      <option value="--Select--">--Select--</option>
+		              <option value="55">India</option>
+		              <option value="79">Uk</option>
+		              <option value="02">Japan</option>
+		            </select>
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                  
+                 
+                  <div class="form-group">
+                   <div class="col-md-4"> <label>Name : <span>*</span></label> </div>
+                   
+                    <div class="col-md-8"> 
+                    <div class="input-group">  
+                    {{ name }}
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                 <div class="form-group">
+                    <div class="col-md-4">
+                    <label>Description : <span>*</span></label>
+                    
+                    </div>
+                   
+                     <div class="col-md-8">  
+                    <div class="input-group">  
+                    {{ desc }}
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                 
+                 <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Address : <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                    {{ address }}
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                  
+                 <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Account No. <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                      {{ accNo }}
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                 <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Swift : <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                      {{swift}}
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+               </div>
+         
+              </div>
+             </div>
+             
+             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="row p10">
+                 <div class="box-body">
+                                   
+                  <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Contact No. : <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                      {{contactNo}}
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                
+                 <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Email Id: <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                      {{emailID}}
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                 
+                 <div class="form-group">
+                 
+                  <div class="col-md-4">
+                    <label>Status :</label>
+                    </div>
+                  
+                   <div class="col-md-8">   
+                    <div class="input-group">  
+                    {{status}}
+                  </div>
+                 </div> 
+                  
+                 </div><!-- /.form-group -->
+                 
+                <div class="form-group">
+                   <div class="col-md-4">
+                    <label>Details : <span>*</span></label> 
+                    </div>
+                   <div class="col-md-8">  
+                    <div class="input-group">  
+                    {{details}}
+                  </div>
+                  </div>
+                  
+                 </div><!-- /.form-group -->
+                 
+                 <div class="form-group">
+                 
+                   <div class="col-lg-7 col-md-6 col-sm-1 col-xs-2">
+                   
+                   </div>
+                   <br><br><br><br><br><br><br>
+                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="display:inline-block;float:left;">
+                   <button ng-click="backToRequestMaster();" class="btn btn-md btn-primary"><i class="fa fa-floppy-o"></i>
+ 					Back </button>
+                   </div>
+                   <!-- <br><br> -->
+                   &nbsp;&nbsp;&nbsp;&nbsp;
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+                   <button ng-click="approveStatus();" class="btn btn-md btn-primary"><i class="fa fa-floppy-o"></i>
+ 					Accept</button>
+                   </div>
+                   &nbsp;&nbsp;&nbsp;&nbsp;
+                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+                   <button ng-click="rejectStatus();" class="btn btn-md btn-primary"><i class="fa fa-power-off fs0"></i> Reject</button>
+                   </div> 
+                 </div>
+                 
+               </div>
+              </div>
+             </div>   
+             
+              
+          </form> 
+          
+          </div>   
+       
+       
+        </section>

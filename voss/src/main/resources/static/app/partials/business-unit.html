@@ -1,106 +1,58 @@
-  <section class="content"  ng-controller="BusinessUnitController">
-       
-             <div class="row drops">
-             
-                <div class="col-md-12 mT20">
+        <section class="content" ng-controller="BUMasterController">
+          <div class="row">
+            
+           <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                 
-                      <div class=" table-responsive mT20">
+                <div class=" table-responsive mT20">
              
 				<table   class="table text-center table-bordered table-hover dataTable" id="example2" role="grid" aria-describedby="example2_info">
 					<thead>
 						<tr class="table_menu">
-                          <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Profit: activate to sort column descending" >ID</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" >Code</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" >Name</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Options</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"></th>
-                         </tr>
+                          <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Profit: activate to sort column descending" ></th>
+                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" >ID</th>
+                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">CODE</th>
+                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">NAME</th>
+                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">STATUS</th>
+						</tr>
 					</thead>
 					<tbody>
-						 <tr role="row" class="odd">
-                           <td class="sorting_1" >1</td>
-                           <td class="sorting_1" >CHEM</td>
-                           <td class="sorting_1" >CHEMICALS</td>
-                           <td class="sorting_1" >Enable</td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Edit"> <i class="fa fa-edit"></i> </a> </td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Delet"> <i class="fa fa-times"></i> </a> </td>
+						 <tr role="row" class="odd" ng-repeat="each in buData">
+                           <td class="sorting_1 select{{ each.bankID }}"  ng-click="selectBU(each.buID);"> <a> <i class="fa fa-caret-right color-db fs2"></i> </a> </i>
+</td>
+                           <td class="sorting_1 select{{ each.bankID }}"  ng-style="selectedRow">{{ each.buID }}</td>
+                           <td class="sorting_1 select{{ each.bankID }}" ng-style="selectedRow">{{ each.code }}</td>
+                           <td class="sorting_1 select{{ each.bankID }}" ng-style="selectedRow">{{ each.name }} </td>
+                           <td class="sorting_1 select{{ each.bankID }}" ng-style="selectedRow">{{ each.status }}</td>
                         </tr>
-                        
-                        <tr role="row" class="odd">
-                           <td class="sorting_1" >2</td>
-                           <td class="sorting_1" >MNRLS</td>
-                           <td class="sorting_1" >METALS & MINERALS</td>
-                           <td class="sorting_1" >Enable</td> 
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Edit"> <i class="fa fa-edit"></i> </a> </td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Delet"> <i class="fa fa-times"></i> </a> </td>
-                       </tr>
-                       
-                        <tr role="row" class="odd">
-                           <td class="sorting_1" >3</td>
-                           <td class="sorting_1" >POLY</td>
-                           <td class="sorting_1" >POLYMERS</td>
-                           <td class="sorting_1" >Disable</td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Edit"> <i class="fa fa-edit"></i> </a> </td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Delet"> <i class="fa fa-times"></i> </a> </td>
-                       </tr>
-                       
-                         <tr role="row" class="odd">
-                           <td class="sorting_1" >3</td>
-                           <td class="sorting_1" >POLY</td>
-                           <td class="sorting_1" >POLYMERS</td>
-                           <td class="sorting_1" >Disable</td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Edit"> <i class="fa fa-edit"></i> </a> </td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Delet"> <i class="fa fa-times"></i> </a> </td>
-                       </tr>
-                       
-                         <tr role="row" class="odd">
-                           <td class="sorting_1" >3</td>
-                           <td class="sorting_1" >POLY</td>
-                           <td class="sorting_1" >POLYMERS</td>
-                           <td class="sorting_1" >Disable</td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Edit"> <i class="fa fa-edit"></i> </a> </td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Delet"> <i class="fa fa-times"></i> </a> </td>
-                       </tr>
-                       
-                         <tr role="row" class="odd">
-                           <td class="sorting_1" >3</td>
-                           <td class="sorting_1" >POLY</td>
-                           <td class="sorting_1" >POLYMERS</td>
-                           <td class="sorting_1" >Disable</td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Edit"> <i class="fa fa-edit"></i> </a> </td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Delet"> <i class="fa fa-times"></i> </a> </td>
-                       </tr>
-                       
-                         <tr role="row" class="odd">
-                           <td class="sorting_1" >3</td>
-                           <td class="sorting_1" >POLY</td>
-                           <td class="sorting_1" >POLYMERS</td>
-                           <td class="sorting_1" >Disable</td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Edit"> <i class="fa fa-edit"></i> </a> </td>
-                           <td class="sorting_1" ><a href="#" class="btn btn-md btn-primary" title="Delet"> <i class="fa fa-times"></i> </a> </td>
-                       </tr>
-                        
-                   </tbody>
-				  </table>
-			     </div>
-                 
-               </div>
-               
-            
-             <div class="col-md-12 mT20">
-             
-                 <div class="row">
-            
-				<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">  
-			<a href="#" class="btn btn-md btn-primary mB10" > <i class="fa fa-plus"></i> </a> <span class="mL10  color-db"> 
-            Add </span> </div>
-            
-            
+					             </tbody>
+				               </table>
+			                  </div>
+                  
+                  <div class="container">
+                    <div class="row text-center mB20">
+                  <div id="example2_paginate" class="dataTables_paginate paging_simple_numbers">
+                  <ul class="pagination">
+                  <li id="example2_previous" class="paginate_button previous disabled">
+                  <a ng-click="last();" tabindex="0" data-dt-idx="0" aria-controls="example2" >Previous</a>
+                  </li>
+                  <li class="paginate_button" ng-repeat="n in getNumber(2)  track by $index">
+                  <a tabindex="0" data-dt-idx="{{$index+1}}" aria-controls="example2"  ng-click="reload($index+1);">{{$index+1}}</a>
+                  </li>
+                  <li id="example2_next" class="paginate_button next">
+                  <a ng-click="next();" tabindex="0" data-dt-idx="7" aria-controls="example2" >Next</a>
+                  </li>
+                  </ul>
+                  </div>
+                  </div>
                 </div>
-              </div>
-              
-               
-          </div>
-             
+                
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">  
+			<a ng-click="fetchNewBank();"  class="btn btn-md btn-primary" > <i class="fa fa-plus"></i> </a> <span class="mL10  color-db"> Add </span> </div>
+			<a ng-click="editBank();"  class="btn btn-md btn-primary" > <i class="fa fa-plus"></i> </a> <span class="mL10  color-db"> Edit </span> 	  
+				  </div> 
+           
+          
+          </div>   
+       
+       
         </section>

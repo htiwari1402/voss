@@ -14,9 +14,17 @@ app.config(['$routeProvider', function($routeProvider) {
 	    controller : 'PageController',
 	    templateUrl : './app/partials/editBank.html'
 	  })
+	  .when('/viewBank', {
+	    controller : 'PageController',
+	    templateUrl : './app/partials/viewBank.html'
+	  })
 	  .when('/businessUnit', {
 	    controller : 'PageController',
 	    templateUrl : './app/partials/business-unit.html'
+	  })
+	  .when('/requestMaster', {
+	    controller : 'PageController',
+	    templateUrl : './app/partials/requestMaster.html'
 	  })
 	  .otherwise({
         redirectTo: '/'

@@ -6,6 +6,11 @@ app.controller('PageController', ['$scope', '$route', '$routeParams','$http','$l
        function init($scope, $route, $routeParams,$http,$rootScope) 
        {
     	   $rootScope.pendingStatus = 'Disable';
+    	   $http.get("/getUserDetail").
+           then(function(data)
+        		   {
+        	               $rootScope.userDetail = data.data;
+        		   });
        }
        $scope.fetchBankMaster = function()
        {
@@ -14,6 +19,50 @@ app.controller('PageController', ['$scope', '$route', '$routeParams','$http','$l
        $scope.fetchBusinessUnit = function()
        {
     	   $location.url("businessUnit");
+       }
+       $scope.fetchRequestMaster = function()
+       {
+    	   $location.url("requestMaster");
+       }
+       $rootScope.requestViewBank = function(id)
+       {
+    	   $location.url("viewBank");
+    	   $http.get("/getBankByID?bankID="+ id).
+           then(function(data)
+        		   {
+        	            JSON.stringify(data);
+        	             $rootScope.country = data.data.country;
+      			         $rootScope.name = data.data.name;
+      			         $rootScope.desc = data.data.desc;
+      			         $rootScope.address = data.data.address;
+      			         $rootScope.accNo = data.data.accNo;
+      			         $rootScope.swift = data.data.swift;
+      			         $rootScope.contactNo = data.data.contactNo;
+      			         $rootScope.emailID = data.data.emailID;
+      			         $rootScope.status = data.data.status;
+      			         $rootScope.details= data.data.details;
+        		   });
+       }
+       $rootScope.backToRequestMaster = function()
+       {
+    	   $rootScope.requestID = null;
+    	   $location.url("requestMaster");
+       }
+       $rootScope.approveStatus =function()
+       {
+    	   $http.get("/approveRequest?requestID="+ $rootScope.requestID).
+           then(function(data)
+        		   {
+        	               alert("Request Approved !!! Status Updated !!!");
+        		   });
+       }
+       $rootScope.rejectStatus = function()
+       {
+    	   $http.get("/rejectRequest?requestID="+ $rootScope.requestID).
+           then(function(data)
+        		   {
+        	               alert("Request Rejected !!! Status Updated !!!");
+        		   });
        }
        
 }
@@ -167,14 +216,33 @@ app.controller('BankMasterController', ['$scope', '$route', '$routeParams','$htt
    			"swift": $scope.swift,
    			"contactNo": $scope.contactNo,
    			"emailID":$scope.emailID,
-   			"status": $scope.status,
+   			"status": $rootScope.pendingStatus,
    			"details" : $scope.details
 				} ;
        $http.post("/addBank", bankDetail).
        then(function(data)
     		   {
-    	   			console.log("Banks Added");
+    	   			$scope.newBankID = data.data;
+    	   			var requestDetail = {
+    	   	    		   "userId" : $rootScope.userDetail.reportingManager,
+    	   	    		   "requestingUserId" : $rootScope.userDetail.userId,
+    	   	    		   "requesttable" : "bankmaster",
+    	   	    		   "requestIdName" : "pk_bankID",
+    	   	    		   "activationFlag" : "1",
+    	   	    		   "requestTableStatusName" : "status",
+    	   	    		   "updatedRequestValue" : "Enable",
+    	   	    		   "requestMasterName" : "bankmaster",
+    	   	    		   "date" : "2015-10-11",
+    	   	    		   "requestIdValue": $scope.newBankID
+    	   	       };
+    	   	       $http.post("/createRequest", requestDetail).
+    	   	       then(function(data)
+    	   	    		   {
+    	   	    	   			console.log('request created');
+    	   	    		   });
     		   });
+       
+       
        }
 }
 ]);
@@ -213,7 +281,7 @@ app.controller('EditBankController', ['$scope', '$route', '$routeParams','$http'
      			"swift": $scope.swift,
      			"contactNo": $scope.contactNo,
      			"emailID":$scope.emailID,
-     			"status": $scope.status,
+     			"status": $rootScope.pendingStatus,
      			"details" : $scope.details
   				} ;
          $http.post("/editBank", bankDetail).

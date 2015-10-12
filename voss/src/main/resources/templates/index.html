@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" ng-app="voss">
+<html lang="en-US"  xmlns:ng="http://angularjs.org" id="ng-app" ng-app="voss" xmlns:th="http://www.thymeleaf.org">
   <!-- Designer- Atish Mhatre -->
   <head>
     <meta charset="utf-8">
@@ -118,7 +118,7 @@
                 <li><a ><i class="fa fa-check color-db"></i> Product</a></li>
                 <li><a ><i class="fa fa-check color-db"></i> Country & City</a></li>
                 <li><a ><i class="fa fa-check color-db"></i> Traders Budget</a></li>
-                 <li><a ><i class="fa fa-check color-db"></i> Pending Approvals</a></li>
+                 <li ng-click="fetchRequestMaster();"><a ><i class="fa fa-check color-db"></i> Pending Approvals</a></li>
               </ul>
             </li>
   
@@ -190,8 +190,10 @@
               <img src="app/images/login-icon.png" width="39" height="39" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Seema - Vikudha Kenya</p>
+              <p><span th:text="${name}"></span></p>
+              <!-- <span th:text="${name}"></span> -->
               <a href="#"><i class="fa fa-power-off color-db"></i> Log out</a>
+              <span ng-click="requestViewBank(5)">click me</span>
             </div>
           </div>
          

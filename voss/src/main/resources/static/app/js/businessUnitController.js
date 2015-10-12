@@ -1,4 +1,4 @@
-app.controller('BankMasterController', ['$scope', '$route', '$routeParams','$http','$location','$rootScope', 
+app.controller('BUMasterController', ['$scope', '$route', '$routeParams','$http','$location','$rootScope', 
                                   function($scope, $route, $routeParams,$http,$location,$rootScope) 
 {
        
@@ -6,56 +6,56 @@ app.controller('BankMasterController', ['$scope', '$route', '$routeParams','$htt
        function init($scope, $route, $routeParams,$http,$rootScope) 
        {
     	   $scope.currentPage = 1;
-    	   $http.post("/getBankMasterSize").
+    	   $http.post("/getBUMasterSize").
            then(function(data)
         		   {
-        	            $scope.bankDataSize = data.data;
+        	            $scope.buDataSize = data.data;
         	            //console.log(JSON.stringify($scope.productData));
-        	            if($scope.bankDataSize%10 == 0)
+        	            if($scope.buDataSize%10 == 0)
         	            	{
-        	            	    $scope.noOfPages = $scope.bankDataSize/10;
+        	            	    $scope.noOfPages = $scope.buDataSize/10;
         	            	}
         	            else
         	            	{
-        	            	   $scope.noOfPages = (($scope.bankDataSize - $scope.bankDataSize%10)/10) + 1;
+        	            	   $scope.noOfPages = (($scope.buDataSize - $scope.buDataSize%10)/10) + 1;
         	            	}
         	            $scope.getNumber = function(num) {
         	                return new Array(num);   
         	            }
         	            console.log($scope.noOfPages);
         		   });
-    	   $http.post("/getBankMaster").
+    	   $http.post("/getBUMaster").
            then(function(data)
         		   {
-        	            $scope.bankData = data.data;
+        	            $scope.buData = data.data;
         	            //console.log(JSON.stringify($scope.productData));
         		   });
     	   $scope.reload = function(pageNo)
     	   {
-    		   $http.get("/getBankMaster?page="+pageNo).
+    		   $http.get("/getBUMaster?page="+pageNo).
                then(function(data)
             		   {
-            	            $scope.bankData = data.data;
+            	            $scope.buData = data.data;
             	            //console.log(JSON.stringify($scope.productData));
             		   });
     		   $scope.currentPage = pageNo;
     	   }
     	   $scope.next = function()
     	   {
-    		   $http.get("/getBankMaster?page="+($scope.currentPage+1)).
+    		   $http.get("/getBUMaster?page="+($scope.currentPage+1)).
                then(function(data)
             		   {
-            	            $scope.bankData = data.data;
+            	            $scope.buData = data.data;
             	            //console.log(JSON.stringify($scope.productData));
             		   });
     		   $scope.currentPage = $scope.currentPage+1;
     	   }
     	   $scope.last = function()
     	   {
-    		   $http.get("/getBankMaster?page="+($scope.currentPage-1)).
+    		   $http.get("/getBUMaster?page="+($scope.currentPage-1)).
                then(function(data)
             		   {
-            	            $scope.bankData = data.data;
+            	            $scope.buData = data.data;
             	            //console.log(JSON.stringify($scope.productData));
             		   });
     		   $scope.currentPage = $scope.currentPage-1;
@@ -66,26 +66,26 @@ app.controller('BankMasterController', ['$scope', '$route', '$routeParams','$htt
        {
     	   $location.url("newBank");
        }
-       $scope.selectBank=function(bankID)
+       $scope.selectBU=function(buID)
        {
     	   
-    	   if($rootScope.selectedBank > 0)
+    	   if($rootScope.selectedBU > 0)
     		   {
-    		   		$rootScope.selectedBank = 0;
+    		   		$rootScope.selectedBU = 0;
     		   		/*$scope.selectedRow = {
     		    			   backgroundColor: "white"
     		    	   };*/
     		   		console.log("deselect");
-    		   		angular.element($('.select'+bankID)).css("background-color","white");
+    		   		angular.element($('.select'+buID)).css("background-color","white");
     		   }
     	   else
     		   {
-    		   $rootScope.selectedBank = bankID;
+    		   $rootScope.selectedBU = buID;
         	   /*$scope.selectedRow = {
         			   backgroundColor: "blue"
         	   };*/
         	   console.log("select");
-        	   angular.element($('.select'+bankID)).css("background-color","green");
+        	   angular.element($('.select'+buID)).css("background-color","green");
     		   }
        }
        $scope.editBank = function()
